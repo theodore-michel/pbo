@@ -10,6 +10,14 @@ PBO (policy-based optimization) is a degenerate policy gradient algorithm used f
 - Single-step deep reinforcement learning for open-loop control of laminar and turbulent flows (<a href="https://journals.aps.org/prfluids/abstract/10.1103/PhysRevFluids.6.053902">paper</a> and <a href="https://arxiv.org/pdf/2006.02979.pdf">pre-print</a>),
 - Deep reinforcement learning for the control of conjugate heat transfer with application to workpiece cooling (<a href="https://www.sciencedirect.com/science/article/pii/S0021999121002126">paper</a> and <a href="https://arxiv.org/pdf/2011.15035.pdf">pre-print</a>)
 
+If you use this code for your research, please consider citing:
+
+```
+Policy-based optimization: single-step policy gradient method seen as an evolution strategy
+J. Viquerat, R. Duvigneau, P. Meliga, A. Kuhnle, E. Hachem
+Neural Computing and Applications, vol. 35, iss. 1, 2023
+```
+
 ## Installation and usage
 
 After cloning the package, just `cd` inside the folder and install using:
