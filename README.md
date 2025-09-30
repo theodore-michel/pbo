@@ -4,6 +4,9 @@
   <img align="right" width="350" alt="logo" src="pbo/msc/logo.png">
 </p>
 
+> [!Note]
+> This repository is a fork of the original repository by J. Viquerat et al. (<a href="https://github.com/jviquerat/pbo">jviquerat/pbo</a>) (in Python 3.6), adapted to Python 3.11 and TensorFlow 2.19.0 by T. Michel. 
+
 PBO (policy-based optimization) is a degenerate policy gradient algorithm used for black-box optimization. It shares common traits with both DRL (deep reinforcement learning) policy gradient methods, and ES (evolution strategies) techniques. In this repository, we present a parallel PBO algorithm with full covariance matrix adaptation, along with a few demonstrative applications. The related pre-print can be found <a href="https://arxiv.org/abs/2104.06175">here</a> and the formal paper <a href="https://link.springer.com/article/10.1007/s00521-022-07779-0">here</a>. This paper formalizes the approach used in previous related works:
 
 - Direct shape optimization through deep reinforcement learning (<a href="https://www.sciencedirect.com/science/article/pii/S0021999120308548">paper</a>, <a href="https://arxiv.org/pdf/1908.09885.pdf">pre-print</a> and <a href="https://github.com/jviquerat/drl_shape_optimization">github repository</a>),
@@ -31,6 +34,13 @@ The environments from the paper are available in the `envs/*` folder. For each `
 ```
 pbo path/to/envs/my_env.json
 ```
+
+> [!Note]
+> Given that tensorflow optimizers have changed in tensorflow `2.19.0`, `tf.keras.optimizers.Adam` now uses `tf.keras` rather than `tf_keras.` To keep optimal performances for original hyperparamters and avoid degradation, force tensorflow to use `tf_keras` with environment variable:
+> ```bash
+> export TF_USE_LEGACY_KERAS=True
+> ```
+> You include this in the activation script of your virtual env for automation. For conda see this [example](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#macos-and-linux)
 
 Below are some selected optimization cases performed with the algorithm.
 
