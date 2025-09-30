@@ -193,17 +193,16 @@ class continuous(base_pbo):
     @tf.function
     def train_mu(self, obs, adv, act):
 
-        var = self.net_mu.trainable_variables
         with tf.GradientTape() as tape:
-            tape.watch(var)
 
             cr = tf.convert_to_tensor(self.net_cr.call(obs), tf.float64)
             sg = tf.convert_to_tensor(self.net_sg.call(obs), tf.float64)
             mu = tf.convert_to_tensor(self.net_mu.call(obs), tf.float64)
 
             loss = self.get_loss(obs, adv, act, mu, sg, cr)
+            var = self.net_mu.trainable_variables
+            grads = tape.gradient(loss, var)
 
-        grads = tape.gradient(loss, var)
         norm  = tf.linalg.global_norm(grads)
         self.net_mu.opt.apply_gradients(zip(grads, var))
 
@@ -211,17 +210,16 @@ class continuous(base_pbo):
     @tf.function
     def train_sg(self, obs, adv, act):
 
-        var = self.net_sg.trainable_variables
         with tf.GradientTape() as tape:
-            tape.watch(var)
 
             cr = tf.convert_to_tensor(self.net_cr.call(obs), tf.float64)
             sg = tf.convert_to_tensor(self.net_sg.call(obs), tf.float64)
             mu = tf.convert_to_tensor(self.net_mu.call(obs), tf.float64)
 
             loss = self.get_loss(obs, adv, act, mu, sg, cr)
+            var = self.net_sg.trainable_variables
+            grads = tape.gradient(loss, var)
 
-        grads = tape.gradient(loss, var)
         norm  = tf.linalg.global_norm(grads)
         self.net_sg.opt.apply_gradients(zip(grads, var))
 
@@ -229,17 +227,16 @@ class continuous(base_pbo):
     @tf.function
     def train_cr(self, obs, adv, act):
 
-        var = self.net_cr.trainable_variables
         with tf.GradientTape() as tape:
-            tape.watch(var)
 
             cr = tf.convert_to_tensor(self.net_cr.call(obs), tf.float64)
             sg = tf.convert_to_tensor(self.net_sg.call(obs), tf.float64)
             mu = tf.convert_to_tensor(self.net_mu.call(obs), tf.float64)
 
             loss = self.get_loss(obs, adv, act, mu, sg, cr)
+            var = self.net_cr.trainable_variables
+            grads = tape.gradient(loss, var)
 
-        grads = tape.gradient(loss, var)
         norm  = tf.linalg.global_norm(grads)
         self.net_cr.opt.apply_gradients(zip(grads, var))
 
