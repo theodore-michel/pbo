@@ -40,7 +40,7 @@ pbo path/to/envs/my_env.json
 > ```bash
 > export TF_USE_LEGACY_KERAS=True
 > ```
-> You include this in the activation script of your virtual env for automation. For conda see this [example](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#macos-and-linux)
+> You can include this in the activation script of your virtual env for automation. For conda see this [example](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#macos-and-linux)
 
 Below are some selected optimization cases performed with the algorithm.
 
