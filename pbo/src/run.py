@@ -46,8 +46,17 @@ def run():
     if (not os.path.exists(res_path)): os.makedirs(res_path)
 
     t           = time.localtime()
-    path_time   = time.strftime("%H-%M-%S", t)
+    path_time   = time.strftime("%m-%d", t)
     output_path = res_path+'/'+params.env_name+'_'+str(path_time)
+    version = 1
+    while os.path.exists(output_path):
+        if version == 1:
+            output_path = res_path+'/'+params.env_name+'_'+str(path_time)+'_v1'
+        else:
+            # Remove previous version and add new one
+            base_path = res_path+'/'+params.env_name+'_'+str(path_time)
+            output_path = base_path+'_v'+str(version)
+        version += 1
     os.makedirs(output_path, exist_ok=True)
 
     for i in range(params.n_avg):
