@@ -17,6 +17,16 @@ tf.keras.backend.set_floatx('float64')
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 tfd = tfp.distributions
 
+# Handle memory allocation on GPU to be dynamic
+gpus = tf.config.list_physical_devices('GPU')
+if gpus:
+    try:
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
+    except RuntimeError as e:
+        print(e)
+
+
 ###############################################
 ### Neural network for mu and sg prediction
 class nn(Model):
