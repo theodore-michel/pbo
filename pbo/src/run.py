@@ -111,6 +111,10 @@ def run():
     np.savetxt(f, array, fmt='%.5e')
 
     # Plot avg and std
+    plt.rcParams['font.family'] = "serif"  # Use a serif font
+    plt.rcParams['font.serif'] = ["cmr10", "Computer Modern Serif", "DejaVu Serif"]
+    plt.rcParams['mathtext.fontset'] = "cm"
+    plt.rcParams['mathtext.rm'] = "serif"
     plt.rcParams['font.size'] = 10
     plt.rcParams['axes.labelsize'] = 10
     plt.rcParams['xtick.labelsize'] = 10
@@ -119,22 +123,23 @@ def run():
     plt.rcParams['figure.titlesize'] = 12
     plt.rcParams['figure.titleweight'] = 'bold'
 
-    plt.title('reward')
-    plt.xlabel('generations')
+    plt.title('Reward - '+params.env_name)
+    plt.xlabel('Episodes')
+    plt.ylabel("$r$")
     plt.yscale(params.avg_type)
-    plt.plot(avg,
-             color='blue',
+    plt.plot(-avg,
+             color='darkblue',
              label='best')
-    plt.fill_between(gen, p, m,
+    plt.fill_between(gen, -p, -m,
                      alpha=0.4,
-                     color='blue')
+                     color='darkblue')
 
-    plt.plot(avg_avg,
-             color='red',
+    plt.plot(-avg_avg,
+             color='darkred',
              label='avg')
-    plt.fill_between(gen, p_bis, m_bis,
+    plt.fill_between(gen, -p_bis, -m_bis,
                      alpha=0.4,
-                     color='red')
+                     color='darkred')
     plt.grid(True)
     plt.legend()
-    plt.savefig('pbo.png', bbox_inches='tight')
+    plt.savefig(os.path.join(output_path, 'pbo.png'), bbox_inches='tight')
