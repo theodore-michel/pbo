@@ -112,20 +112,22 @@ def run():
 
     # Plot avg and std
     plt.rcParams['font.family'] = "serif"  # Use a serif font
-    plt.rcParams['font.serif'] = ["cmr10", "Computer Modern Serif", "DejaVu Serif"]
+    plt.rcParams['font.serif'] = ["Computer Modern Serif", "DejaVu Serif"]
     plt.rcParams['mathtext.fontset'] = "cm"
     plt.rcParams['mathtext.rm'] = "serif"
-    plt.rcParams['font.size'] = 10
-    plt.rcParams['axes.labelsize'] = 10
-    plt.rcParams['xtick.labelsize'] = 10
-    plt.rcParams['ytick.labelsize'] = 10
-    plt.rcParams['legend.fontsize'] = 10
-    plt.rcParams['figure.titlesize'] = 12
+    plt.rcParams['axes.formatter.use_mathtext'] = True
+    plt.rcParams['axes.unicode_minus'] = False
+    plt.rcParams['font.size'] = 12
+    plt.rcParams['axes.labelsize'] = 14
+    plt.rcParams['xtick.labelsize'] = 12
+    plt.rcParams['ytick.labelsize'] = 12
+    plt.rcParams['legend.fontsize'] = 14
+    plt.rcParams['figure.titlesize'] = 16
     plt.rcParams['figure.titleweight'] = 'bold'
 
     plt.title('Reward - '+params.env_name)
-    plt.xlabel('Episodes')
-    plt.ylabel("$r$")
+    plt.xlabel('Episode')
+    plt.ylabel('Reward')
     plt.yscale(params.avg_type)
     plt.plot(-avg,
              color='darkblue',
